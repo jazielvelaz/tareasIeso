@@ -1,0 +1,65 @@
+#include<conio.h>
+#include<stdio.h>
+#include<stdlib.h>
+#include<time.h>
+#define max 3
+int a[8][8];
+int  aux_1, aux_2,aux_3,aux_4,i,j;
+int aux=1;
+
+
+void llenar();
+void imprimir();
+void desordenar();
+
+
+main(){
+       
+       printf("Hola mundo :D \n\n\n");
+       srand(time(NULL));
+       llenar();
+       imprimir();
+       printf("\n\n\n\n");
+       desordenar();
+       printf("\n\n\n\n");
+       imprimir();
+       
+      
+
+getch();
+       }
+
+void llenar(){
+for(i=0;i<max;i++){
+   for(j=0;j<max;j++){
+         a[i][j] =aux++;     
+    }            
+  
+  }        
+}
+//:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+void imprimir()
+{    
+for(i=0; i<max; i++){ 
+    for(j=0;j<max;j++){
+    printf("[%d]", a[i][j]  );
+   }
+printf("\n\n");
+ }
+}
+//:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+void desordenar()
+{
+    for(i=0; i<max; i++){ 
+        for(j=0;j<max;j++){
+              
+        aux_1=rand()%max;
+        aux_2=rand()%max;
+        aux_3=rand()%max;
+        aux_4=rand()%max;
+        aux=a[aux_1][aux_2];
+        a[aux_1][aux_2]=a[aux_3][aux_4];
+        a[aux_3][aux_4]=aux;     
+    }
+  }
+}
