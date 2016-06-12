@@ -1,0 +1,85 @@
+//programa que convierte un numero Decimal a Binario
+
+#include <stdio.h>
+#define divisor 2
+typedef struct nodo
+{
+	int dato;
+	struct nodo *siguiente;
+} nodo;
+
+typedef nodo *ptrNodo;
+
+ptrNodo pila = NULL;
+int numerodepushs = 0;
+int dividendo;
+int residuo;
+void imprimiendo();
+//::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+void push(ptrNodo *pila, int x)
+{
+	ptrNodo nodo;
+
+	nodo = (ptrNodo) malloc(sizeof(nodo));
+
+	if (nodo != NULL)
+	{
+		nodo->dato = x;
+
+		nodo->siguiente = *pila;
+
+		*pila = nodo;
+	}
+}
+//;::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+int pop(ptrNodo *pila)
+{
+	ptrNodo nodo;
+
+    int x;
+
+	nodo = *pila;
+	x = nodo->dato;
+
+	*pila = nodo->siguiente;
+
+	free(nodo);
+
+	return x;
+}
+//:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+pedirNumeros()
+{
+  int i;
+  printf("\ningresa el numero que deseas convertir: ");
+  fflush(stdin);
+  scanf("%d", &dividendo);
+   do{
+        residuo=dividendo%divisor;
+        push(&pila,residuo);
+        numerodepushs ++;  
+        printf("\n____________________________________");
+        dividendo=dividendo/divisor;
+        printf("\n[%d]\n",dividendo);
+   }while(dividendo>0);
+
+}//fin pedir
+//:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+void imprimiendo()
+{
+  int i;
+  printf("\nEl numero en binario es: \n\n");
+    for(i = 0; i < numerodepushs; i++){
+       printf("\t%d", pop(&pila));   
+    }
+}
+int  main()
+{
+    system("color 1e");
+    pedirNumeros();
+    imprimiendo();
+    getch();
+    return 1;
+}
+
